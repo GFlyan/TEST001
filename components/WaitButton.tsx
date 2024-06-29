@@ -1,20 +1,20 @@
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-interface propsStartButton {
+interface propsWaitButton {
   active: boolean,
   setActive: Function
 }
 
-function StartButton ({active, setActive}: propsStartButton) {
+function WaitButton ({active, setActive}: propsWaitButton) {
   return (
     <TouchableOpacity onPress={() => setActive(!active)}>
       <View style={style.buttonContainer}>
-        <Text style={style.buttonText}>TREINAR</Text>
+        <Text style={style.buttonText}>DESCANSAR</Text>
       </View>
     </TouchableOpacity>
   )
 }
-export default StartButton;
+export default WaitButton;
 
 const style = StyleSheet.create({
   buttonContainer: {

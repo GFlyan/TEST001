@@ -40,7 +40,6 @@ function CircularProgressBar ({tempo, handleEndTimer} : PropsCounter) {
  }
 
  return ( 
-    <View style={style.circularProgressBar}>
     <AnimatedCircularProgress
       size={300}
       width={10}
@@ -55,7 +54,6 @@ function CircularProgressBar ({tempo, handleEndTimer} : PropsCounter) {
       >
         {TimeView}
       </AnimatedCircularProgress>
-      </View>
  )
 }
 export default CircularProgressBar;

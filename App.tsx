@@ -1,15 +1,20 @@
-import { StyleSheet, View} from "react-native";
+import { StyleSheet, View, Text} from "react-native";
 import React, { useState } from "react";
 import ReturnButton from "./components/ReturnButton";
 import InfoButton from "./components/InfoButton";
 import CircularProgressBar from "./components/CircularProgressBar";
 import StartButton from "./components/StartButton";
+import WaitButton from "./components/WaitButton";
 import ExerciseName from "./components/ExerciseName";
+import List from "./components/List";
 import Halter from "./components/Halter";
+import { Barbell } from "phosphor-react-native";
+
 
 function Index() {
-  const [active, setActive] = useState(false)
-  console.log(active);
+  const [activeStartButton, setActiveStartButton] = useState(false)
+  const [activeWaitButton, setActiveWaitButton] = useState(false)
+  console.log(activeWaitButton);
   const dataExercicios = [
     {
       "id": "2febb97c-db33-43c2-a24f-a94c5a22fa5c",
@@ -49,13 +54,13 @@ function Index() {
       setExercicioAtualTreino(prevState=> prevState + 1 )
       setNumeroSeriesRestantes(dataExercicios[exercicioAtualTreino].numeroSer)      
       setIntervaloExercicioAtual(dataExercicios[exercicioAtualTreino].intervalo)      
-      setActive(false)
+      setActiveWaitButton(false)
     }
     else {
       console.log("mais uma series");
       
       setNumeroSeriesRestantes(prevState => prevState - 1 )      
-      setActive(false)
+      setActiveWaitButton(false)
     }
     if (dataExercicios.length - 1 == exercicioAtualTreino){
       // LEVAR PARA TELA PRINCIPAL
@@ -72,19 +77,19 @@ function Index() {
         <ExerciseName nome={dataExercicios[exercicioAtualTreino].exercicio.nome} />
       <View style={style.circularProgressBar}>
         {
-          active 
+          activeWaitButton
           ? <CircularProgressBar tempo={dataExercicios[exercicioAtualTreino].intervalo} handleEndTimer={handleEndTimer}/>
-          : <Halter 
-              numeroRep={dataExercicios[exercicioAtualTreino].numeroRep}
-              seriesRestantes={numeroSeriesRestantes}
-              intervalo={dataExercicios[exercicioAtualTreino].intervalo}
-              />
-
-
+          : <Barbell size={250} color="#7000FA"/>
+          //  <List 
+          //     numeroRep={dataExercicios[exercicioAtualTreino].numeroRep}
+          //     seriesRestantes={numeroSeriesRestantes}
+          //     intervalo={dataExercicios[exercicioAtualTreino].intervalo}
+          //     />
         }
       </View>
       <View style={style.startButton}>
-        <StartButton active={active} setActive={setActive}/>
+        <StartButton/>
+        <WaitButton active={activeWaitButton} setActive={setActiveWaitButton}/>
       </View>
     </View> 
   );
