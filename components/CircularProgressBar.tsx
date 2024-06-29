@@ -3,10 +3,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
+interface PropsCounter {
+  tempo: number
+  handleEndTimer: Function
+}
 
-function CircularProgressBar () {
+function CircularProgressBar ({tempo, handleEndTimer} : PropsCounter) {
  //Timing 
- const WaitTime = 120
+ const WaitTime = tempo
  const [timeLeft, setTimeLeft] = useState(WaitTime);
  const [fill, setFill] = useState(100);
 
@@ -17,7 +21,10 @@ function CircularProgressBar () {
        setFill((prevFill) => prevFill - (100 / WaitTime));
      }, 1000);
 
+     
      return () => clearInterval(interval);
+   } else {
+    handleEndTimer()
    }
  }, [timeLeft]);
  const formatTime = (seconds: number) => {

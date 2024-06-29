@@ -1,9 +1,10 @@
 import { Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-function ExerciseName () {
+
+function ExerciseName ({nome}: string) {
     return (
-        <Text style={style.headerText}>ExerciseName</Text>
+        <Text style={style.headerText}>{nome}</Text>
     )
 }
 export default ExerciseName;

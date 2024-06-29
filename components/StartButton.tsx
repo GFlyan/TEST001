@@ -1,10 +1,14 @@
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import CircularProgressBar from './CircularProgressBar';
+interface propsStartButton {
+  active: boolean,
+  setActive: Function
+}
 
-function StartButton () {
+function StartButton ({active, setActive}: propsStartButton) {
   return (
-    <TouchableOpacity onPress={() => CircularProgressBar}>
+    <TouchableOpacity onPress={() => setActive(!active)}>
       <View style={style.buttonContainer}>
         <Text style={style.buttonText}>TREINAR</Text>
       </View>

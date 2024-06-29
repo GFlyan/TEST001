@@ -2,9 +2,21 @@ import { Text, View } from 'react-native'
 import React from 'react'
 import { Barbell } from 'phosphor-react-native';
 
-function Halter () {
+interface propsTreinando {
+  seriesRestantes : number,
+  numeroRep: number,
+  intervalo: number
+}
+
+function Halter (props: propsTreinando) {
     return (
-      <Barbell size={250} color='rgb(109 40 217)' weight='regular'/>
+
+      <View style={{justifyContent: "center", alignItems: "center"}}>
+        <Text style={{fontSize:25, color:"white"}}>Series restantes: {props.seriesRestantes}</Text>
+        <Text style={{fontSize:25, color:"white"}}>Número de repetições: {props.numeroRep}</Text>
+        <Text style={{fontSize:25, color:"white"}}>Tempo de intervalo: {props.intervalo}</Text>
+
+      </View>
     )
 }
 export default Halter;
